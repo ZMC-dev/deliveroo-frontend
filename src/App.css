@@ -1,15 +1,92 @@
-
-img.App-logo {
-  height: 50px;
-  width: 155px;
+.App {
+  background-color: lightgray;
 }
 
-header {
-  padding: 0 19px 0 19px;
-  border-bottom: solid lightgrey 1px;
+h1 {
+  font-size: 32px;
+  font-weight: bold;
 }
 
-.Rest-info-cover {
-  width: 350px;
-  height: 197px;
+h2 {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+.main-restaurant {
+  display: flex;
+  border-bottom: solid lightgray 1px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.main-rest-info {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.main-rest-info p {
+  font-size: 19px;
+  
+}
+
+.main-pic {
+  border-radius: 10px;
+  object-fit: cover;
+  max-width: 350px;
+}
+
+.categories-bloc {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: lightcyan;
+}
+
+.meal-card {
+  display: flex;
+  line-height: 20px;
+  padding: 10px;
+  margin: 20px;
+  width: 400px;
+  height: 150px;
+  background-color: white;
+  border-radius: 15px;
+}
+
+.meal-card-left{
+  padding-right: 10px;
+  flex: 60%;
+}
+.meal-card-left p {
+  line-height: 20px;
+  
+  justify-content: space-around;
+  font-size: 14px;
+}
+
+.meal-pic {
+  flex: 40%;
+  width: 100px;
+  border-radius: 10px;
+}
+
+.cart p{
+  font-size: 40px;
 }
