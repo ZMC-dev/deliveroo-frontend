@@ -8,17 +8,16 @@ function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  const [cart, setCart] = useState([]);
+const [cart, setCart] = useState([]);
   //const [price, setPrice] = useState(0);
 
   //modifier le panier
-  const addNewMeal = (event) => {
-    event.preventDefault();
+  const addNewMeal = (meal) => {
     console.log("Vous venez d'ajouter un repas à votre panier");
     const newCart = [...cart];
-    newCart.push({cart, isAdd: false });
+    newCart.push({title: meal.title, price: meal.price, id: meal.id, quantity: 1});
     setCart(newCart);
-  };
+  }; 
 
   console.log("Render App component");
 
@@ -54,16 +53,15 @@ function App() {
         </div>   
       </section>
 
-      {data.categories.map((categorie)=>{
-        return (<section > 
+      {data.categories.map((categorie, index)=>{
+        return (<section key={index}> 
             <h2 >{categorie.name}</h2>
             <div className="categories-bloc">
-              {categorie.meals.map((meal) => {
+              {categorie.meals.map((meal, index) => {
                 
-                 
                 return (
-                <div className="meal-card"
-                  onClick={() =>{addNewMeal(meal) }}>
+                <div className="meal-card" key={index}
+                  onClick={() =>{addNewMeal(meal)}}>
 
                   <div className="meal-card-left">
                     <h3>{meal.title}</h3>
@@ -83,8 +81,25 @@ function App() {
          </section>)
       })}
             <div className="cart">
-            <p>Panier</p>
-            <p>{cart}</p>
+            <button>Valider mon panier</button>
+            <div>{cart.map((meal, index)=> {
+              return (
+              <div className="cart-items" key={index}>
+              
+                <button> - </button>
+                <p> {meal.quantity} </p>
+
+                <button> + </button>
+
+                <p> {meal.title} </p>
+                <p> {meal.price} </p>
+              </div>
+              )
+            
+            })}</div>
+
+
+            <p>hello</p>
             </div>
     </div>  
   )}   

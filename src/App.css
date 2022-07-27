@@ -87,6 +87,11 @@ img {
   border-radius: 10px;
 }
 
-.cart p{
-  font-size: 40px;
+.cart-items {
+  display: flex;
+  flex-direction: row;
+}
+
+.cart-items p{
+  font-size: 15px;
 }
