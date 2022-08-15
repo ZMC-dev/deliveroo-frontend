@@ -1,26 +1,31 @@
-.App {
-  background-color: lightgray;
-  font-family: 'Stratos Deliveroo Web';
-}
+@import './fonts/stylesheet.css';
+
+
 
 h1 {
   font-size: 32px;
-  font-weight: bold;
+  font-family: 'Stratos Deliveroo Web'; 
 }
 
 h2 {
   font-size: 28px;
-  font-weight: bold;
 }
 
 h3 {
   font-size: 18px;
-  font-weight: bold;
 }
 
 .container {
   max-width: 1024px;
   margin: 0 auto;
+  display: flex;
+  font-family: 'IBM Plex Sans';
+}
+
+
+.content-main {
+  background-color: lightgray;
+  max-width: 100%;
   display: flex;
 }
 
@@ -33,19 +38,19 @@ img {
 .main-restaurant {
   display: flex;
   border-bottom: solid lightgray 1px;
-  margin: 20px;
-  padding: 20px;
+  background-color: white;
 }
 
-.main-rest-info {
+.main-restaurant-info {
   display: flex;
   flex-direction: column;
   margin: 20px;
+  width: 100%;
 }
 
 .main-rest-info p {
   font-size: 19px;
-  
+  font-family: 'IBM Plex Sans';
 }
 
 .main-pic {
@@ -57,7 +62,6 @@ img {
 .categories-bloc {
   display: flex;
   flex-wrap: wrap;
-  background-color: lightcyan;
 }
 
 .meal-card {

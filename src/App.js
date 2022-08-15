@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 
+
 function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -11,11 +12,31 @@ function App() {
 const [cart, setCart] = useState([]);
   //const [price, setPrice] = useState(0);
 
+const delivery = 2.5;
+  let subTotal = 0;
+  cart.forEach((cartMeal) => {
+    subTotal += cartMeal.price * cartMeal.quantity;
+  })
+
+//prix total à payer
+const total = subTotal + delivery;
+
   //modifier le panier
   const addNewMeal = (meal) => {
     console.log("Vous venez d'ajouter un repas à votre panier");
+    //copie de cart
     const newCart = [...cart];
-    newCart.push({title: meal.title, price: meal.price, id: meal.id, quantity: 1});
+
+    const mealAlreadyExists = newCart.find((elem) => elem.id === meal.id);
+
+    //si le meal existe déjà augement sa quantité, ne pas créer un nouveau champ
+    if (mealAlreadyExists) {
+      mealAlreadyExists.quantity++;
+      setCart(newCart);
+    }
+    //si le meal n'existe mas, créer le nouveau meal et l'initialiser à 1
+    else 
+    newCart.push({...meal,quantity: 1});
     setCart(newCart);
   }; 
 
@@ -39,24 +60,34 @@ const [cart, setCart] = useState([]);
 
 
   return(
-  <div className="container"> {isLoading ? (
+  <div> {isLoading ? (
     <span>En cours de chargement... </span>
   ) : (
+
     <div>
       <section className="main-restaurant">
-        <div className="main-rest-info">
-          <h1>{data.restaurant.name}</h1>
-          <p>{data.restaurant.description}</p>
-        </div>
-        <div className="main-rest-picture">
-          <img className="main-pic" src={data.restaurant.picture} alt=""></img>
-        </div>   
-      </section>
+       
+       <div className="main-restaurant-info">
+         <h1>{data.restaurant.name}</h1>
+         <p>{data.restaurant.description}</p>
+       </div>
+       <div className="main-rest-picture">
+         <img className="main-pic" src={data.restaurant.picture} alt=""></img>
+       </div>   
+     </section>
+
+    <div className="content-main">
+
+      <div className="content-restaurant">
+
+     
 
       {data.categories.map((categorie, index)=>{
         return (<section key={index}> 
-            <h2 >{categorie.name}</h2>
-            <div className="categories-bloc">
+           <div>
+
+             <h2 >{categorie.name}</h2>
+             <div className="categories-bloc">
               {categorie.meals.map((meal, index) => {
                 
                 return (
@@ -75,12 +106,17 @@ const [cart, setCart] = useState([]);
                 )
 
               })}
+              </div>
+              
+           </div>
 
-            </div>
+         </section>
 
-         </section>)
-      })}
-            <div className="cart">
+         ) })}
+          </div>
+
+         
+         <div className="cart">
             <button>Valider mon panier</button>
             <div>{cart.map((meal, index)=> {
               return (
@@ -96,12 +132,15 @@ const [cart, setCart] = useState([]);
               </div>
               )
             
-            })}</div>
-
-
-            <p>hello</p>
+            })}
             </div>
-    </div>  
+          </div>
+
+         
+           
+    </div> 
+    
+  </div>  
   )}   
   </div>
   );
